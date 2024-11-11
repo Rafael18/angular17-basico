@@ -1,0 +1,75 @@
+<!-- <p>{{formulario.value.nome}}</p> -->
+<!-- <p>{{formulario.value.idade}}</p> -->
+<!-- <p>{{formulario.value.cidade}}</p> -->
+
+<form [formGroup]="formulario">
+  <!-- Nome -->
+   @if (formulario.get('nome').hasError('required') && formulario.get('nome').touched)
+   {
+      <p class="alert alert-warning">Campo nome é obrigatório</p>
+   }
+
+   @if (formulario.get('nome').hasError('minlength') && formulario.get('nome').touched)
+   {
+      <p class="alert alert-warning">O campo nome precisa conter pelo menos 3 caracteres</p>
+   }
+
+  <input type="text" formControlName="nome" placeholder="Nome" class="form-control">
+
+  <!-- Idade -->
+  @if (formulario.get('idade').hasError('required') && formulario.get('idade').touched) {
+    <p class="alert alert-warning">O campo idade precisa ser preenchido.</p>
+  }
+
+  @if (formulario.get('idade').hasError('min') && formulario.get('idade').touched) {
+    <p class="alert alert-warning">A idade mínima é 0.</p>
+  }
+
+  @if (formulario.get('idade').hasError('max') && formulario.get('idade').touched) {
+    <p class="alert alert-warning">A idade máxima é 120.</p>
+  }
+
+  <input type="number" name="idade"      placeholder="Idade"   formControlName="idade"  class="form-control">
+
+  <!-- Cidade -->
+  @if (formulario.get('cidade').hasError('required') && formulario.get('cidade').touched)
+  {
+     <p class="alert alert-warning">Campo cidade é obrigatório</p>
+  }
+
+  @if (formulario.get('cidade').hasError('minlength') && formulario.get('cidade').touched)
+  {
+     <p class="alert alert-warning">O campo cidade precisa conter pelo menos 3 caracteres</p>
+  }
+  <input type="text" formControlName="cidade" placeholder="Cidade" class="form-control">
+
+  <input type="button" value="Cadastrar" class="btn btn-success">
+  <input type="button" value="Alterar" class="btn btn-warning">
+  <input type="button" value="Remover" class="btn btn-danger">
+  <input type="button" value="Cancelar" class="btn btn-primary">
+
+</form>
+
+
+<!-- TABELA -->
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Cidade</th>
+          <th>Selecionar</th>
+      </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><button class="btn btn-primary">Selecionar</button></td>
+      </tr>
+  </tbody>
+</table>
