@@ -43,10 +43,16 @@
   }
   <input type="text" formControlName="cidade" placeholder="Cidade" class="form-control">
 
-  <input type="button" value="Cadastrar" class="btn btn-success">
-  <input type="button" value="Alterar" class="btn btn-warning">
-  <input type="button" value="Remover" class="btn btn-danger">
-  <input type="button" value="Cancelar" class="btn btn-primary">
+@if (btnCadastrar)
+{
+  <input type="button" value="Cadastrar" (click)="cadastrar()" class="btn btn-success" [disabled]="formulario.invalid">
+}
+@else
+{
+  <input type="button" value="Alterar" (click)="alterar()" class="btn btn-warning" [disabled]="formulario.invalid">
+  <input type="button" value="Remover" (click)="remover()" class="btn btn-danger">
+  <input type="button" value="Cancelar" (click)="cancelar()" class="btn btn-primary">
+}
 
 </form>
 
@@ -64,12 +70,12 @@
   </thead>
 
   <tbody>
-      <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><button class="btn btn-primary">Selecionar</button></td>
+      <tr *ngFor="let v of vetor; index as indice">
+          <td>{{indice + 1}}</td>
+          <td>{{v.nome}}</td>
+          <td>{{v.idade}}</td>
+          <td>{{v.cidade}}</td>
+          <td><button class="btn btn-primary" (click)="selecionar(indice)" >Selecionar</button></td>
       </tr>
   </tbody>
 </table>
